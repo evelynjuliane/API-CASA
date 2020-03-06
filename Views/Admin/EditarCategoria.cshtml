@@ -1,0 +1,13 @@
+@model CasaDeShow.DTO.CategoriaDTO
+@{
+    Layout= "_Layout";
+}
+<h3>Editar Categoria</h3>
+<hr/>
+<form class="form-horizontal" asp-controller="Categorias" asp-action="Atualizar" method = "POST">
+<input type="hidden" asp-for="Id">
+<label asp-for="Nome">Nome</label>
+<input type="text" asp-for="Nome" class="form-control" placeholder="Nome da Categoria">
+<span asp-validation-for="Nome"> </span>
+<button class="btn btn-success">Atualizar</button>
+</form>

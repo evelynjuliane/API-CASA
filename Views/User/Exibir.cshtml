@@ -1,0 +1,62 @@
+@model CasaDeShow.DTO.VendaDTO
+@{
+    Layout = "_Layout";
+}
+
+<form class="form-horizontal" asp-controler="User" asp-action="Salvar" method="POST">
+
+
+    <input type="hidden" asp-for="Id">
+    <h1 class="text-center">@Html.DisplayFor(model => model.Nome)</h1>
+    <hr/>
+    <div class="row">
+        <div class="col-md-5 col-sm-6">
+            <img class="img-thumbnail" style="max-width: 300px" src="@Html.DisplayFor(model => model.img)" >
+            <br>
+            <br>
+        </div>
+        <div class="col-md-4 col-sm-6">
+                <p><strong>Data e Hora do Evento: </strong>@Html.DisplayFor(model => model.Data)</p>
+                <p><strong>Preço do ingresso: </strong>R$@Html.DisplayFor(model => model.Preco).</p>
+                <p><strong>Genêro: </strong>@ViewBag.NomeCategoria</p>
+                <p><strong>Local do Evento: </strong>@ViewBag.Local</p>
+                <p><strong>Nome da Casa de Show: </strong>@ViewBag.NomeCasa</p>
+                <label asp-for="QuantidadeComprada"><strong>Valor do Ingresso</strong></label>
+                <input type="number" min="1" max='@ViewBag.QuantidadeDeIngressos'  asp-for="QuantidadeComprada" class=" form-controll mx-sm-3 mb-2 " >
+                <span asp-validation-for="QuantidadeComprada"> </span><br><br> 
+                <button class="btn btn-success">Comprar</button>
+            
+        </div>
+    
+    </div>
+   
+    <div id="oculto">
+        <label asp-for="Nome">Nome</label>
+        <input type="hidden" asp-for="Nome" class="form-control" placeholder="Nome do Evento">
+        <span asp-validation-for="Nome"> </span>
+        
+        <input type="hidden" asp-for="EventoID">
+
+        <label>Selecione Categoria</label><br>
+        <select class="form-controll" asp-for="CategoriaID" asp-items='@(new SelectList(@ViewBag.Categorias, "Id", "Nome"))'></select><br>
+        
+        <label>Selecione Casa de Show</label><br>
+        <select  class="form-controll" asp-for="CasaShowID" asp-items='@(new SelectList(@ViewBag.CasasShows, "Id", "Nome"))'></select><br>
+
+        <label asp-for="QuantidadeDeIngressos">Quantidade de Ingressos</label>
+        <input type ="hidden" asp-for="QuantidadeDeIngressos" class="form-control" placeholder="Quantidade de Ingressos">
+
+
+        <label asp-for="Data">Data do Evento</label>
+        <input type="hidden" asp-for="Data" class="form-control" placeholder="Data do Evento">
+        <span asp-validation-for="Data"> </span>
+    
+
+
+        <label asp-for="Preco">Valor do Ingresso</label>
+        <input type= "hidden" asp-for="Preco" class="form-control" placeholder="Valor em R$">
+        <span asp-validation-for="Preco"> </span> 
+    </div>
+ 
+    
+</form>
