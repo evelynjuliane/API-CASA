@@ -76,35 +76,46 @@ namespace CasaDeShow.Controllers
         }
         [HttpPost]
         public IActionResult Post([FromBody] EventoDTO eventsTemporary) {
-            if(eventsTemporary.Nome.Length <= 1){
-                Response.StatusCode = 400;
-                return new ObjectResult(new { msg = "O Nome deve ter mais de  1 caracter." });
+            if(database.CasasShows.ToList() == null && database.Categorias.ToList() == null){
+                try{
+                    if(eventsTemporary.Nome.Length <= 1){
+                        Response.StatusCode = 400;
+                        return new ObjectResult(new { msg = "O Nome deve ter mais de  1 caracter." });
+                    }
+                    Evento events = new Evento ();
+                    events.Nome = eventsTemporary.Nome;
+                    events.Categoria = database.Categorias.First (categoria => categoria.Id == eventsTemporary.CategoriaID);
+                    events.CasaShow = database.CasasShows.First (c => c.Id == eventsTemporary.CasaShowID);
+                    events.QuantDeIngressos = eventsTemporary.QuantDeIngressos;
+                    events.Data = eventsTemporary.Data;
+
+                    events.ValorDoIngresso = eventsTemporary.ValorDoIngresso;
+                    events.Status = true;
+
+                    database.Eventos.Add(events);
+                    database.SaveChanges ();
+                    
+                    Response.StatusCode = 201;
+                    return new ObjectResult("");
+                }catch(Exception){
+                    Response.StatusCode = 404;
+                    return new ObjectResult("");
+                }
+            }else{
+                Response.StatusCode = 404;
+                return new ObjectResult("");
             }
-            Evento events = new Evento ();
-            events.Nome = eventsTemporary.Nome;
-            events.Categoria = database.Categorias.First (categoria => categoria.Id == eventsTemporary.CategoriaID);
-            events.CasaShow = database.CasasShows.First (c => c.Id == eventsTemporary.CasaShowID);
-            events.QuantDeIngressos = eventsTemporary.QuantDeIngressos;
-            events.Data = eventsTemporary.Data;
-
-            events.ValorDoIngresso = eventsTemporary.ValorDoIngresso;
-            events.Status = true;
-
-            database.Eventos.Add(events);
-            database.SaveChanges ();
-            
-            Response.StatusCode = 201;
-            return new ObjectResult("");
         }
 
-        [HttpPatch]
-        public IActionResult Patch ([FromBody] EventoDTO eventsTemporary) {
+        [HttpPut]
+        public IActionResult Put ([FromBody] EventoDTO eventsTemporary) {
             if (eventsTemporary.Id > 0)
             {
                 try
                 {
                     var events = database.Eventos.First (e => e.Id == eventsTemporary.Id);
                     if(eventsTemporary != null){
+
                         events.Nome = eventsTemporary.Nome;
                         events.Categoria = database.Categorias.First (categoria => categoria.Id == eventsTemporary.CategoriaID);
                         events.CasaShow = database.CasasShows.First (casashow => casashow.Id == eventsTemporary.CasaShowID);

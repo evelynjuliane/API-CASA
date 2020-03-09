@@ -93,8 +93,8 @@ namespace CasaDeShow.Controllers
            
         }
         
-        [HttpPatch]
-        public IActionResult Patch ([FromBody] CasaShowDTO clubTemporary) {
+        [HttpPut]
+        public IActionResult Put ([FromBody] CasaShowDTO clubTemporary) {
            if(clubTemporary.Id > 0){
                 try
                 {

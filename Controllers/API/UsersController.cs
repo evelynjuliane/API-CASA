@@ -25,7 +25,8 @@ namespace CasaDeShow.API
             try
             {
                 var users = database.Users.First(s => s.UserName == email);
-                return Ok(users);
+                var aux = users.UserName;
+                return Ok(aux);
             }catch(Exception){
                 Response.StatusCode = 404;
                 return new ObjectResult("");

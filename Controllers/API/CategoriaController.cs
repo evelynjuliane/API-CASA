@@ -63,8 +63,8 @@ namespace CasaDeShow.Controllers
         }
 
         //EDIT
-        [HttpPatch]
-        public IActionResult Patch ([FromBody] CategoriaDTO categoryTemporary) {
+        [HttpPut]
+        public IActionResult Put ([FromBody] CategoriaDTO categoryTemporary) {
             if(categoryTemporary.Id > 0){ 
                 try{ 
                     var category = database.Categorias.First (cat => cat.Id == categoryTemporary.Id);
