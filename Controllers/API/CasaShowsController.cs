@@ -20,7 +20,7 @@ namespace CasaDeShow.Controllers
         [HttpGet]
         public IActionResult Get() {
             try{
-                var casa = database.CasasShows.ToList ();
+                var casa = database.CasasShows.Where(c => c.Status == true).ToList ();
                 return Ok(casa);
             }catch(Exception){
                 Response.StatusCode = 404;
@@ -42,13 +42,13 @@ namespace CasaDeShow.Controllers
         //Ordem Crescente 
         [HttpGet("asc")]
         public IActionResult asc(){
-            var casa = database.CasasShows.ToList ().OrderBy(c => c.Nome);
+            var casa = database.CasasShows.Where(c => c.Status == true).ToList ().OrderBy(c => c.Nome);
             return Ok(casa);
         }
         //Ordem Decrescente
         [HttpGet("desc")]
         public IActionResult desc(){
-           var casa = database.CasasShows.ToList ().OrderByDescending(c => c.Nome);
+           var casa = database.CasasShows.Where(c => c.Status == true).ToList ().OrderByDescending(c => c.Nome);
            return Ok(casa);
             
         }
