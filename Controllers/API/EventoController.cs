@@ -19,14 +19,14 @@ namespace CasaDeShow.Controllers
         //LIST
         [HttpGet]
         public IActionResult Get() {
-            var eventos = database.Eventos.Include (p => p.Categoria).Include (p => p.CasaShow).Where (e => e.Status == true).ToList ();
+            var eventos = database.Eventos.Include (p => p.Categoria).Include (p => p.CasaShow).Where (e => e.Status == true && e.CasaShow.Status == true && e.Categoria.Status == true).ToList ();
             return Ok(eventos);
         }
         
         [HttpGet("{id}")]
         public IActionResult Get(int id){
             try{
-                var eventos = database.Eventos.Include (p => p.Categoria).Include (p => p.CasaShow).Where (e => e.Status == true).ToList ();
+                var eventos = database.Eventos.Include (p => p.Categoria).Include (p => p.CasaShow).Where (e => e.Status == true && e.CasaShow.Status == true && e.Categoria.Status == true).ToList ();
                 return Ok(eventos); 
             }catch(Exception){
                 Response.StatusCode = 404;

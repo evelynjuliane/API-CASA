@@ -8892,11 +8892,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\EJDH\\Downloads\\API-CASASHOW-5f28e12ebb137ba0b0cc2379d6586d9c74955275\\API-CASASHOW-5f28e12ebb137ba0b0cc2379d6586d9c74955275\\CasaDeShow.csproj",
+      "projectUniqueName": "C:\\Users\\EJDH\\Desktop\\GFT\\API-CASA\\CasaDeShow.csproj",
       "projectName": "CasaDeShow",
-      "projectPath": "C:\\Users\\EJDH\\Downloads\\API-CASASHOW-5f28e12ebb137ba0b0cc2379d6586d9c74955275\\API-CASASHOW-5f28e12ebb137ba0b0cc2379d6586d9c74955275\\CasaDeShow.csproj",
+      "projectPath": "C:\\Users\\EJDH\\Desktop\\GFT\\API-CASA\\CasaDeShow.csproj",
       "packagesPath": "C:\\Users\\EJDH\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EJDH\\Downloads\\API-CASASHOW-5f28e12ebb137ba0b0cc2379d6586d9c74955275\\API-CASASHOW-5f28e12ebb137ba0b0cc2379d6586d9c74955275\\obj\\",
+      "outputPath": "C:\\Users\\EJDH\\Desktop\\GFT\\API-CASA\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\EJDH\\AppData\\Roaming\\NuGet\\NuGet.Config"
